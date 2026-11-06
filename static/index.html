@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1220">
+  <meta name="description" content="Credit risk assessment powered by a machine learning model.">
+  <title>CreditScope — Credit Risk Assessment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="CreditScope home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none"><path d="M5 23.5 12.2 16l4.5 4.4L27 9.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.5 9.5H27V16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span class="brand-name">credit<span>scope</span></span>
+      </a>
+      <div class="topbar-right">
+        <span class="system-status"><span class="status-dot"></span> API connected</span>
+        <span class="topbar-divider"></span>
+        <span class="topbar-label">RISK INTELLIGENCE <span class="topbar-version">01.0</span></span>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> CREDIT RISK ASSESSMENT</div>
+          <h1>See the risk<br>behind the <span>numbers.</span></h1>
+          <p class="hero-description">Evaluate a loan application with a machine-learning model. Enter the applicant and loan details to generate a default-risk estimate.</p>
+        </div>
+        <div class="hero-aside" aria-label="Assessment information">
+          <div class="hero-aside-icon">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 19 6v5.5c0 4.3-2.9 7.8-7 9.5-4.1-1.7-7-5.2-7-9.5V6l7-3Z" stroke="currentColor" stroke-width="1.5"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <div class="aside-title">MODEL-DRIVEN ASSESSMENT</div>
+            <div class="aside-subtitle">Probability · Threshold · Classification</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="workspace" aria-label="Credit risk assessment workspace">
+        <form id="loan-form" class="form-card" novalidate>
+          <div class="card-heading">
+            <div>
+              <div class="section-kicker">APPLICATION INPUT</div>
+              <h2>Applicant profile</h2>
+            </div>
+            <span class="required-note"><span class="required-star">*</span> Required fields</span>
+          </div>
+
+          <div class="form-section">
+            <div class="form-section-title"><span class="section-number">01</span><span>PERSONAL DETAILS</span><span class="section-rule"></span></div>
+            <div class="field-grid">
+              <label class="field">
+                <span class="field-label">Applicant age <span class="required-star">*</span></span>
+                <span class="input-wrap"><input type="number" name="person_age" min="18" max="99" step="1" value="25" required><span class="input-suffix">yrs</span></span>
+              </label>
+              <label class="field">
+                <span class="field-label">Annual income <span class="required-star">*</span></span>
+                <span class="input-wrap"><span class="input-prefix">$</span><input type="number" name="person_income" min="0.01" step="any" value="44004" required></span>
+              </label>
+              <label class="field">
+                <span class="field-label">Home ownership <span class="required-star">*</span></span>
+                <span class="select-wrap"><select name="person_home_ownership" required><option value="RENT" selected>Rent</option><option value="OWN">Own</option><option value="MORTGAGE">Mortgage</option><option value="OTHER">Other</option></select></span>
+              </label>
+              <label class="field">
+                <span class="field-label">Employment length</span>
+                <span class="input-wrap"><input type="number" name="person_emp_length" min="0" step="0.1" value="9"><span class="input-suffix">yrs</span></span>
+                <span class="field-hint">Leave blank if not available.</span>
+              </label>
+              <label class="field field-full">
+                <span class="field-label">Previous default on file <span class="required-star">*</span></span>
+                <span class="segmented" role="group" aria-label="Previous default on file">
+                  <label class="segment-option"><input type="radio" name="cb_person_default_on_file" value="N" checked><span>No</span></label>
+                  <label class="segment-option"><input type="radio" name="cb_person_default_on_file" value="Y"><span>Yes</span></label>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-section loan-section">
+            <div class="form-section-title"><span class="section-number">02</span><span>LOAN DETAILS</span><span class="section-rule"></span></div>
+            <div class="field-grid">
+              <label class="field">
+                <span class="field-label">Loan purpose <span class="required-star">*</span></span>
+                <span class="select-wrap"><select name="loan_intent" required><option value="PERSONAL">Personal</option><option value="EDUCATION">Education</option><option value="MEDICAL" selected>Medical</option><option value="VENTURE">Venture</option><option value="HOMEIMPROVEMENT">Home improvement</option><option value="DEBTCONSOLIDATION">Debt consolidation</option></select></span>
+              </label>
+              <label class="field">
+                <span class="field-label">Loan grade <span class="required-star">*</span></span>
+                <span class="select-wrap"><select name="loan_grade" required><option>A</option><option>B</option><option>C</option><option>D</option><option selected>E</option><option>F</option><option>G</option></select></span>
+              </label>
+              <label class="field">
+                <span class="field-label">Loan amount <span class="required-star">*</span></span>
+                <span class="input-wrap"><span class="input-prefix">$</span><input type="number" name="loan_amnt" min="0.01" step="any" value="12000" required></span>
+              </label>
+              <label class="field">
+                <span class="field-label">Interest rate <span class="required-star">*</span></span>
+                <span class="input-wrap"><input type="number" name="loan_int_rate" min="0.01" step="any" value="16.45" required><span class="input-suffix">%</span></span>
+              </label>
+              <label class="field">
+                <span class="field-label">Loan / income ratio <span class="required-star">*</span></span>
+                <span class="input-wrap"><input type="number" name="loan_percent_income" min="0.000001" step="any" value="0.27" required></span>
+                <span class="field-hint">Enter as a decimal, e.g. 0.27 for 27%.</span>
+              </label>
+              <label class="field">
+                <span class="field-label">Credit history length <span class="required-star">*</span></span>
+                <span class="input-wrap"><input type="number" name="cb_person_cred_hist_length" min="0" step="1" value="4" required><span class="input-suffix">yrs</span></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-footer">
+            <div class="form-footnote"><span class="footnote-icon">i</span><span>All required fields must match the model's accepted input categories and ranges.</span></div>
+            <button class="submit-button" id="submit-button" type="submit">
+              <span class="button-label">Assess application</span>
+              <span class="button-arrow" aria-hidden="true">↗</span>
+              <span class="button-spinner" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div class="form-error" id="form-error" role="alert" hidden></div>
+        </form>
+
+        <aside class="result-column">
+          <section class="result-card" id="result-card" aria-live="polite">
+            <div class="result-topline">
+              <div class="section-kicker">ASSESSMENT OUTPUT</div>
+              <span class="result-live"><span class="live-dot"></span> LIVE RESULT</span>
+            </div>
+            <div class="result-empty" id="result-empty">
+              <div class="empty-orbit">
+                <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+                <div class="empty-icon">
+                  <svg viewBox="0 0 48 48" fill="none"><path d="M9 36V25m10 11V15m10 21V21m10 15V9" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M6 40h36" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+              </div>
+              <h3>Your result will<br>appear here.</h3>
+              <p>Complete the application details and run an assessment to see the model's estimate.</p>
+              <div class="empty-hint"><span class="hint-pulse"></span> READY WHEN YOU ARE</div>
+            </div>
+
+            <div class="result-content" id="result-content" hidden>
+              <div class="decision-row">
+                <div>
+                  <div class="decision-overline">MODEL CLASSIFICATION</div>
+                  <div class="decision-title" id="prediction-label">—</div>
+                  <div class="decision-caption" id="decision-caption">Model assessment result</div>
+                </div>
+                <div class="decision-icon" id="decision-icon" aria-hidden="true">!</div>
+              </div>
+              <div class="probability-block">
+                <div class="probability-heading"><span>DEFAULT PROBABILITY</span><span class="probability-unit">MODEL OUTPUT</span></div>
+                <div class="probability-value"><span id="probability-value">—</span><span class="probability-percent">%</span></div>
+                <div class="probability-track"><div class="probability-fill" id="probability-fill"></div><span class="threshold-marker" id="threshold-marker"></span></div>
+                <div class="track-labels"><span>0%</span><span id="threshold-track-label">Threshold —</span><span>100%</span></div>
+              </div>
+              <div class="metrics-grid">
+                <div class="metric-tile"><span class="metric-label">DECISION THRESHOLD</span><strong id="threshold-value">—</strong></div>
+                <div class="metric-tile"><span class="metric-label">CLASS OUTPUT</span><strong id="class-value">—</strong></div>
+              </div>
+              <div class="result-explainer" id="result-explainer">
+                <span class="explain-icon">↗</span>
+                <p>The estimated default probability is compared with the model's classification threshold.</p>
+              </div>
+              <button class="details-toggle" id="details-toggle" type="button" aria-expanded="false">View submitted application <span>＋</span></button>
+              <div class="submitted-details" id="submitted-details" hidden></div>
+            </div>
+          </section>
+
+          <section class="model-note">
+            <div class="note-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V5m0 14h16M8 15l3-4 3 2 5-7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div><div class="note-title">HOW TO READ THIS</div><p>A probability at or above the threshold is classified as <strong>Default</strong>. A probability below it is classified as <strong>Non-default</strong>.</p></div>
+          </section>
+          <div class="disclaimer">Decision-support demonstration only. This model output is not a credit approval, denial, or a substitute for a lender's review.</div>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>© <span id="year"></span> CREDITSCOPE</span>
+      <span>BUILT FOR EXPLORATORY CREDIT RISK ANALYSIS</span>
+      <a href="/docs" target="_blank" rel="noreferrer">API DOCUMENTATION ↗</a>
+    </footer>
+  </div>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>

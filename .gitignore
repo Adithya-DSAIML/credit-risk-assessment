@@ -1,0 +1,30 @@
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Python generated files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Jupyter generated files
+.ipynb_checkpoints/
+main_test.ipynb
+iframe_figures/
+
+# Reference materials
+/Reference Noteb*/
+/Credit-Risk-Asse*/
+
+# Dataset
+/credit_risk_dataset.csv
+
+# macOS
+.DS_Store
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
